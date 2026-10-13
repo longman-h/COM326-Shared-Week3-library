@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,5 +22,8 @@ namespace Library
             Console.WriteLine();
         }
     }
-} 
-    
+}
+// Note: Example/demo Main has been removed from this class file to avoid
+// multiple entry point errors. Keep library model types separate from
+// application entry point. If you need a demo runner, create a separate
+// Program.cs with a single Main method.

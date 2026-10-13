@@ -1,3 +1,5 @@
+using Library;
+
 namespace Library
 {
     public class Member
@@ -86,3 +88,5 @@ namespace Library
         }
     }
 }
+// Removed demo Program and Main to avoid multiple entry points in the project.
+// Keep this file focused on the Member model.
