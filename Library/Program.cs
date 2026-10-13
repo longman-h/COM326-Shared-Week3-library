@@ -1,28 +1,63 @@
+using System;
+using System.Collections.Generic;
 using Library;
 
-Book book = new Book();
-// This information is for one book in our library
-book.Title = "C# for beginners";
-book.Author = "BillGates";
-book.ISBN = "12345678";
+namespace MyApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Book> books = new List<Book>();
+            List<Member> members = new List<Member>();
 
-book.DisplayInfo();
+            books.Add(new Book { Title = "C# for beginners", Author = "BillGates", ISBN = "12345678" });
+            books.Add(new Book { Title = "C# Methods and classes", Author = "Microsoft", ISBN = "55667778" });
 
-// This is another book in our library
-Book book1 = new Book();
-book1.Title = "C# Methods and classes";
-book1.Author = "Microsoft";
-book1.ISBN = "55667778";
+            members.Add(new Member(1, "John Smith", "1 High Street", 0790090090));
+            members.Add(new Member(2, "Mary Jones", "102 Garden Road", 0790345666));
 
-book1.DisplayInfo();
+            // Display all books and members
+            foreach (var book in books)
+            {
+                book.DisplayInfo();
+            }
 
-// Create new instances of the Member class
-// These new members are created using the
-// Member constructor in the Members class
-Member member = new Member(1, "John Smith", "1 High Street", 0790090090);
-Member member1 = new Member(2, "Mary Jones", "102 Garden Road", 0790345666);
+            foreach (var member in members)
+            {
+                member.DisplayInfo();
+            }
 
-Console.WriteLine("Current library members");
-member.DisplayInfo();
-member1.DisplayInfo();
+            // Create a dictionary to track book inventory by ISBN
+            Dictionary<string, int> bookInventory = new Dictionary<string, int>();
 
+
+            // Add our two sample books to the inventory (ISBN, Quantity)
+            bookInventory.Add("1234567", 5);
+            bookInventory.Add("2233445", 2);
+
+
+            // Display the inventory for a specific book using its ISBN key
+            Console.WriteLine($"Copies of 'C# for beginners' in stock: {bookInventory["1234567"]}");
+
+            Console.WriteLine("Checking inventory for a missing book...");
+
+            try
+            {
+                // This ISBN does not exist, so it will throw a KeyNotFoundException
+                Console.WriteLine(bookInventory["9999999"]);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: That ISBN was not found in the inventory system.");
+            }
+            finally
+            {
+                Console.WriteLine("Inventory check complete.");
+            }
+
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+        }
+    }
+}
